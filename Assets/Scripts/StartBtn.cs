@@ -10,33 +10,24 @@ public class StartBtn : MonoBehaviour
     public InputField playerNameInput;
     private string playerName = null;
 
-    private void Awake()
+    public void GameStart()
     {
-        playerName = playerNameInput.GetComponent<InputField>().text;
-    }
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-        if (playerName.Length > 0 && playerName.Length < 10)
+        playerName = playerNameInput.text;
+        if (playerName.Length > 2 && playerName.Length < 10)
         {
             InputName();
+            SceneManager.LoadScene("MainScene");
         }
         else
         {
-
+            playerNameInput.text = "2~10자 사이로 입력하세요.";
+            playerName = null;
         }
     }
+
     public void InputName()
     {
-        playerName = playerNameInput.text;
-        PlayerPrefs.SetString("CurrentPlayerName", playerName);
-    }
-
-    public void GameStart()
-    {
-        SceneManager.LoadScene("MainScene");
+        PlayerPrefs.SetString("User1", playerName);
+        PlayerPrefs.Save();
     }
 }

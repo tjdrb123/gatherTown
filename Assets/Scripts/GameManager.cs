@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Text timeTxt;
+    public Text userNameTxt;
     public static GameManager I;
+
+    private string playerName = null;
 
     public void Awake()
     {
@@ -14,11 +17,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        playerName = PlayerPrefs.GetString("User1", "Default Name");
     }
     void Update()
     {
         timeTxt.text = GetCurrentDate();
+        userNameTxt.text = playerName;
     }
 
     public string GetCurrentDate()
