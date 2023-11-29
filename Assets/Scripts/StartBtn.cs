@@ -28,6 +28,5 @@ public class StartBtn : MonoBehaviour
     public void InputName()
     {
         PlayerPrefs.SetString("User1", playerName);
-        PlayerPrefs.Save();
     }
 }

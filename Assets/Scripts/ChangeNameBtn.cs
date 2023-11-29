@@ -7,7 +7,6 @@ public class ChangeNameBtn : MonoBehaviour
 {
     public GameObject changeNamePanel;
     public InputField changeNameInput;
-    private string playerName = null;
 
     public void Button2()
     {
@@ -16,9 +15,16 @@ public class ChangeNameBtn : MonoBehaviour
 
     public void ChangeName()
     {
-        playerName = changeNameInput.text;
-        PlayerPrefs.SetString("User1", playerName);
-        PlayerPrefs.Save();
-        changeNamePanel.SetActive(false);
+        if(changeNameInput.text.Length > 2 && changeNameInput.text.Length < 10)
+        {
+            PlayerPrefs.SetString("User1", changeNameInput.text);
+            changeNameInput.text = "";
+            changeNamePanel.SetActive(false);
+        }
+        else
+        {
+            changeNameInput.text = "2~10자 사이로 입력하세요.";
+        }
+        
     }
 }
